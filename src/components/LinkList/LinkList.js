@@ -1,10 +1,13 @@
-import "./App.css";
 import { useQuery, gql } from "@apollo/client";
-import React from "react";
+
+const client = new ApolloClient({
+  uri: "https://uqjqp.sse.codesandbox.io/",
+  cache: new InMemoryCache(),
+});
 
 const LINKS = gql`
   query GetLinks {
-    getLinks(id: "XXXX") {
+    getLinks {
       name
       url
       slug
@@ -12,7 +15,7 @@ const LINKS = gql`
   }
 `;
 
-function Links() {
+function LinkList() {
   const { loading, error, data } = useQuery(LINKS);
 
   if (loading) return <p>Loading...</p>;
@@ -33,13 +36,4 @@ function Links() {
     </div>
   ));
 }
-
-function App() {
-  return (
-    <div className="App">
-      <Links />
-    </div>
-  );
-}
-
-export default App;
+export default LinkList;

@@ -1,20 +1,35 @@
 // React
 import React from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
 import "./index.css";
-import App from "./App";
+import App from "./components/App/App";
 import reportWebVitals from "./reportWebVitals";
 
 // Apollo
-import { ApolloClient, InMemoryCache } from "@apollo/client";
-import { ApolloProvider } from "@apollo/client";
+import {
+  ApolloClient,
+  NormalizedCacheObject,
+  InMemoryCache,
+  ApolloProvider,
+  gql
+} from "@apollo/client";
 
-// GraphQL
-import { gql } from "@apollo/client";
+const tyeDefs = gql`
+  query GetLinks {
+    getLinks {
+      name
+      url
+      slug
+    }
+  }
+`;
 
-const client = new ApolloClient({
+// Initialize ApolloClient
+const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
   uri: "https://uqjqp.sse.codesandbox.io/",
   cache: new InMemoryCache(),
+  typeDefs
 });
 
 ReactDOM.render(
