@@ -1,16 +1,17 @@
+import React from "react";
 import { useQuery, gql } from "@apollo/client";
 
-const LINKS = gql`
-  query GetLinks {
-    getLinks {
-      name
-      url
-      slug
-    }
-  }
-`;
-
 function LinkList() {
+  const LINKS = gql`
+    query GetLinks {
+      getLinks {
+        name
+        url
+        slug
+      }
+    }
+  `;
+
   const { loading, error, data } = useQuery(LINKS);
 
   if (loading) return <p>Loading...</p>;
