@@ -9,35 +9,22 @@ import reportWebVitals from "./reportWebVitals";
 // Apollo
 import {
   ApolloClient,
-  NormalizedCacheObject,
   InMemoryCache,
   ApolloProvider,
-  gql
 } from "@apollo/client";
 
-const tyeDefs = gql`
-  query GetLinks {
-    getLinks {
-      name
-      url
-      slug
-    }
-  }
-`;
-
 // Initialize ApolloClient
-const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
+const client = new ApolloClient({
   uri: "https://uqjqp.sse.codesandbox.io/",
-  cache: new InMemoryCache(),
-  typeDefs
+  cache: new InMemoryCache()
 });
 
 ReactDOM.render(
-  <React.StrictMode>
+  <BrowserRouter>
     <ApolloProvider client={client}>
       <App />
     </ApolloProvider>
-  </React.StrictMode>,
+  </BrowserRouter>,
   document.getElementById("root")
 );
 

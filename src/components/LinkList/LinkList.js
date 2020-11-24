@@ -1,10 +1,5 @@
 import { useQuery, gql } from "@apollo/client";
 
-const client = new ApolloClient({
-  uri: "https://uqjqp.sse.codesandbox.io/",
-  cache: new InMemoryCache(),
-});
-
 const LINKS = gql`
   query GetLinks {
     getLinks {
@@ -23,15 +18,9 @@ function LinkList() {
 
   return data.getLinks.map(({ name, url, slug }) => (
     <div key={slug}>
-      <p>
-        {name}
-      </p>
-      <p>
-        {url}
-      </p>
-      <p>
-        {slug}
-      </p>
+      <p>{name}</p>
+      <p>{url}</p>
+      <p>{slug}</p>
       <br />
     </div>
   ));
